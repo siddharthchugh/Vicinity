@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.richie.vicinity.MainActivity">
+
+
+
+
+    <!--<com.example.richie.vicinity.FlowLayout-->
+        <!--android:id="@+id/flow_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:isConnectivityAware="true"-->
+        <!--app:connectedText="@string/connectedTextStringResource"-->
+        <!--app:connectedTextColor="@color/connectedTextColorResource"-->
+        <!--app:connectedBackground="@color/connectedBackgroundColorResource"-->
+        <!--app:disconnectedText="@string/disconnectedTextStringResource"-->
+        <!--app:disconnectedTextColor="@color/disconnectedTextColorResource"-->
+        <!--app:disconnectedBackground="@color/disconnectedBackgroundColorResource"-->
+        <!--&gt;-->
+
+    <!--</com.example.richie.vicinity.FlowLayout>-->
+<include layout="@layout/container_main"/>
+    </RelativeLayout>
+

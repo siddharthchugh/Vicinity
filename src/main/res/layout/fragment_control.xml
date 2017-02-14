@@ -1,0 +1,95 @@
+<ScrollView android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/bgwhite"
+    tools:context="com.example.richie.vicinity.AdminActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/hospital_Name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:inputType="textAutoComplete"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+
+
+        <android.support.design.widget.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/hospital_Address"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address"
+                android:inputType="textAutoComplete"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/hospital_Phone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone"
+                android:inputType="number"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/hospital_City"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="City"
+                android:inputType="text"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerZone"
+                   android:layout_gravity="center_horizontal" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBarAddData"
+
+            android:layout_gravity="center_horizontal" />
+
+
+   </LinearLayout>
+
+</ScrollView>
+

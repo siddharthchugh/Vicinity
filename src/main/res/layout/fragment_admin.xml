@@ -1,0 +1,75 @@
+<ScrollView android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/bgwhite"
+    tools:context="com.example.richie.vicinity.AdminActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/to_text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/adminUser"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username"
+                android:layout_marginTop="45dp"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+
+
+        <android.support.design.widget.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/adminPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:layout_marginTop="45dp"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBarAddData"
+
+            android:layout_gravity="center_horizontal" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/submit"
+            android:id="@+id/btnPost"
+            android:layout_margin="5dp"
+            android:textColor="@color/bgwhite"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium.Inverse"
+            android:background="@drawable/ripplebutton"
+            android:layout_gravity="center_horizontal" />
+
+
+
+    </LinearLayout>
+
+</ScrollView>
+

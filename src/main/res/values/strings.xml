@@ -127,4 +127,5 @@
     <string name="title_activity_detail">Hospital Detail</string>
     <string name="title_activity_zones">Zone Selection</string>
     <string name="title_activity_loction">Loction</string>
+    <string name="title_activity_search">Search</string>
 </resources>

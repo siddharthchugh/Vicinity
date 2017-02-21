@@ -26,6 +26,7 @@
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -33,29 +34,30 @@
         android:screenOrientation="sensorPortrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".Activities.AdminActivity"
+            android:theme="@style/AppTheme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".RetroActivity">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-        <activity android:name=".AdminActivity" />
         <activity
             android:name=".SelectionActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.richie.vicinity.MainActivity" />
+                android:value="com.example.richie.vicinity.Activities.MainActivity" />
         </activity>
 
         <!-- <meta-data -->
@@ -66,7 +68,7 @@
         <!-- android:value="@integer/google_play_services_version" /> -->
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar">
 
@@ -78,23 +80,23 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".ListHospitalsActivity"
+            android:name=".Activities.ListHospitalsActivity"
             android:label="@string/title_activity_list_hospitals"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.richie.vicinity.CategoryActivity" />
+                android:value="com.example.richie.vicinity.Activities.CategoryActivity" />
         </activity>
         <activity
-            android:name=".LocationSelection"
+            android:name=".Activities.LocationSelection"
             android:label="@string/title_activity_location_selection"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.richie.vicinity.MainActivity" />
+                android:value="com.example.richie.vicinity.Activities.MainActivity" />
         </activity>
         <activity
-            android:name=".LogoutActivity"
+            android:name=".Activities.LogoutActivity"
             android:label="@string/title_activity_logout"
             android:theme="@style/AppTheme.NoActionBar" />
 
@@ -104,71 +106,75 @@
         <!-- <meta-data -->
         <!-- android:name="com.google.android.gms.version" -->
         <!-- android:value="@integer/google_play_services_version" /> -->
-         <!--<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAX4wTwAO-X4agTCYBcr0Ul5r5muAvwooc-->
-<!--"/>-->
-
+        <!-- <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAX4wTwAO-X4agTCYBcr0Ul5r5muAvwooc -->
+        <!-- "/> -->
 
         <activity
-            android:name=".AreaActivity"
+            android:name=".Activities.AreaActivity"
             android:theme="@style/AppTheme.CustomTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.richie.vicinity.ListHospitalsActivity" />
+                android:value="com.example.richie.vicinity.Activities.ListHospitalsActivity" />
         </activity>
         <activity
             android:name=".MoreInfoActivity"
             android:label="@string/title_activity_more_info"
-            android:theme="@style/AppTheme.NoActionBar"
-
-            >
-
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.richie.vicinity.ListHospitalsActivity" />
-
+                android:value="com.example.richie.vicinity.Activities.ListHospitalsActivity" />
         </activity>
         <activity
-            android:name=".DetailActivity"
+            android:name=".Activities.DetailActivity"
             android:label="@string/title_activity_detail"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.richie.vicinity.ListHospitalsActivity" />
-
-
+                android:value="com.example.richie.vicinity.Activities.ListHospitalsActivity" />
         </activity>
         <activity
             android:name=".ZonesActivity"
             android:label="@string/title_activity_zones"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CategoryActivity"
+            android:name=".Activities.CategoryActivity"
             android:label="@string/title_activity_category"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.richie.vicinity.MainActivity" />
+                android:value="com.example.richie.vicinity.Activities.MainActivity" />
         </activity>
         <activity
-            android:name=".LoctionActivity"
+            android:name=".Activities.LoctionActivity"
             android:label="@string/title_activity_loction"
             android:theme="@style/AppTheme.NoActionBar">
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.richie.vicinity.ListHospitalsActivity" />
-
-
+                android:value="com.example.richie.vicinity.Activities.ListHospitalsActivity" />
         </activity>
 
         <service
             android:name=".GeoLocate"
             android:exported="false" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <activity
+            android:name=".Activities.SearchActivity"
+            android:label="@string/title_activity_search"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.Base">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
 
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+        <!--</intent-filter>-->
+        </activity>
     </application>
 
 </manifest>

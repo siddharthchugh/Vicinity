@@ -16,8 +16,27 @@ public class Login {
     }
 
     private String username;
-    private String password;
+    public String getMailAddress() {
+        return mailAddress;
+    }
 
+
+
+    public void setMailAddress(String mailAddress) {
+        this.mailAddress = mailAddress;
+    }
+
+    public String getPositionid() {
+        return positionid;
+    }
+
+    public void setPositionid(String positionid) {
+        this.positionid = positionid;
+    }
+
+    private String mailAddress;
+    private String positionid;
+    private String password;
 
     public String getUsername() {
         return username;

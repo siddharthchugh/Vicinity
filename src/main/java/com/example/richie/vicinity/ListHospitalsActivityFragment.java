@@ -24,16 +24,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.richie.vicinity.Pojo.HospitalDetail;
+import com.example.richie.vicinity.Activities.AreaActivity;
+import com.example.richie.vicinity.Activities.DetailActivity;
+import com.example.richie.vicinity.Activities.LocationSelection;
+import com.example.richie.vicinity.Activities.LoctionActivity;
 import com.example.richie.vicinity.Pojo.HospitalDetail;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**

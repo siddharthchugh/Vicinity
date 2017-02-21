@@ -5,7 +5,7 @@
     android:id="@+id/scrollView"
     android:layout_gravity="center_horizontal"
     android:background="@color/bgwhite"
-    tools:context="com.example.richie.vicinity.AdminActivity">
+    tools:context="com.example.richie.vicinity.Activities.AdminActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

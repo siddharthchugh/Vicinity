@@ -1,4 +1,4 @@
-package com.example.richie.vicinity;
+package com.example.richie.vicinity.Activities;
 
 import android.content.pm.PackageManager;
 import android.os.Handler;
@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
+
+import com.example.richie.vicinity.R;
 
 import java.util.ArrayList;
 import java.util.List;

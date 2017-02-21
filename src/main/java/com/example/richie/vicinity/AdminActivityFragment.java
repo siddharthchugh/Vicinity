@@ -3,6 +3,7 @@ package com.example.richie.vicinity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -13,6 +14,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,10 +25,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.richie.vicinity.Pojo.Login;
@@ -38,6 +46,9 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -71,8 +82,12 @@ public class AdminActivityFragment extends Fragment {
     private ProgressBar pb_Adddata;
     String result;
     BufferedReader reader;
+    String userData = null;
+    String userPwd=null;
+   private Toolbar tbVicinity;
+    public List<Login> moviedetails;
     private static final String login_url = "http://nearesthospitals.in/User_Insert.php?";
-
+    private Spinner vsSpin;
 // String url = "http://nearesthospitals.in/login_users.php?";
     /*The below given code provides the menu option to the
     * Fragment in Add Data fragment.
@@ -94,13 +109,24 @@ public class AdminActivityFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_admin, container, false);
         coordinatorLayout = (CoordinatorLayout) v.findViewById(R.id.coordinatorLayout);
+//       tbVicinity = (Toolbar) v.findViewById(R.id.toolbarVicinity);
+//        vsSpin = (Spinner) v.findViewById(R.id.spinnerZone);
+//
+//        AppCompatActivity ac = new AppCompatActivity();
+//        ac.setSupportActionBar(tbVicinity);
+//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_dropdown_item);
 
-        edit_User = (EditText) v.findViewById(R.id.adminUser);
+        // Drop down layout style - list view with radio button
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//   vsSpin.setAdapter(dataAdapter);
+
+                edit_User = (EditText) v.findViewById(R.id.adminUser);
         edit_Password = (EditText) v.findViewById(R.id.adminPassword);
         pb_Adddata = (ProgressBar) v.findViewById(R.id.progressBarAddData);
         pb_Adddata.setVisibility(View.INVISIBLE);
         btnPost = (Button) v.findViewById(R.id.btnPost);
         task = new ArrayList<>();
+
         return v;
     }
 
@@ -114,6 +140,12 @@ public class AdminActivityFragment extends Fragment {
 
     /*The Below data is connected to internet
     */
+
+
+
+
+
+
 
     public boolean isConnected() {
         ConnectivityManager manage = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -136,50 +168,75 @@ public class AdminActivityFragment extends Fragment {
             TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
             textView.setTextColor(Color.YELLOW);
             snackbar.show();
+//            LOginUSer();
             return false;
         }
 
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
 
-        btnPost.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    public void LOginUSer(){
+
+
+        if(isConnected()){
+
+
+             String userphone = edit_User.getText().toString();
+             String userpwd = edit_Password.getText().toString();
+
+
+            requestData(login_url,userData,userpwd);        }
+    }
+
+
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//
+//        btnPost.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
 ////            if (!validate()) {
 //
-//            String userphone = edit_User.getText().toString();
-//            String userpwd = edit_Password.getText().toString();
-//           //  int vl = Integer.valueOf(userpwd);
+//           // String userphone = edit_User.getText().toString();
+//           // String userpwd = edit_Password.getText().toString();
+//            // int vl = Integer.valueOf(userpwd);
 ////            if (userphone != null) {
-//            String str = RandomPassword();
-//            String phone = "9999750600";
-//            Sending(phone, str);
+////            String str = RandomPassword();
+////            String phone = "9999750600";
+////            Sending(phone, str);
 //
 //
-////                requestData("http://nearesthospitals.in/User_Insertr.php?");
-//                requestData("http://103.247.98.91/API/SendMsg.aspx?uname=20160743&pass=silend&send=SILEND&dest="+userphone+"&msg=Dear%20Customer,%20Your%20One%20Time%20Password%20(OTP)%20to%20register%20at%20SimpliLend%20is%20%20"+str+"%20+%22.%20Do%20not%20disclose%20OTP%20to%20anyone.%20OTP%20will%20expire%20in%2030%20mins.");
+////                userData = userName.getText().toString();
+//  //              userPwd = userPassword.getText().toString();
+//  LOginUSer();
+////                requestData("http://103.247.98.91/API/SendMsg.aspx?uname=20160743&pass=silend&send=SILEND&dest="+userphone+"&msg=Dear%20Customer,%20Your%20One%20Time%20Password%20(OTP)%20to%20register%20at%20SimpliLend%20is%20%20"+str+"%20+%22.%20Do%20not%20disclose%20OTP%20to%20anyone.%20OTP%20will%20expire%20in%2030%20mins.");
 //
 //  //          }
-//                String str = RandomPassword();
-//                String phone = edit_User.getText().toString();
-//                Sending(phone, str);
-
-
-            }
-
-        });
-
-    }
+////                String str = RandomPassword();
+////                String phone = edit_User.getText().toString();
+////                Sending(phone, str);
+//
+//
+//            }
+//
+//        });
+//
+//    }
 
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
-//        getActivity().getMenuInflater().inflate(R..menu.menu_conrol__panel,menu);
+        getActivity().getMenuInflater().inflate(R.menu.menu_login,menu);
+        MenuItem menuItem = menu.findItem(R.id.menu_spinner);
+
+        vsSpin = (Spinner) MenuItemCompat.getActionView(menuItem);
+
+        ArrayAdapter<String> countryAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item);
+        countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+vsSpin.setAdapter(countryAdapter);
 
     }
 
@@ -212,110 +269,56 @@ public class AdminActivityFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    public void update( ) {
 
-
-
-    private void Sending(final String phone,final String str)
-    {
-        class SendingAsync extends AsyncTask<String,Void,String>
-        {
-            private Dialog loadingDialog;
-            ProgressDialog dialog = new ProgressDialog(getContext());
-            @Override
-            protected void onPreExecute() {
-                dialog.setMessage("Sending");
-                dialog.show();
-                //loadingDialog = ProgressDialog.show(getContext(), "Please Wait", "");
-
-            }
-
-            @Override
-            protected String doInBackground(String... params) {
-
-                ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-                nameValuePairs.add(new BasicNameValuePair("mobile",phone));
-                nameValuePairs.add(new BasicNameValuePair("OTP",str));
-                Log.i("User Phone", "++++++++" + phone);
-                Log.i("OTP","-----"+str);
-                try {
-                    String data = "";
-                    data += "uname="+ URLEncoder.encode("20160743", "ISO-8859-1");
-                    data += "&pass="+ URLEncoder.encode("silend","ISO-8859-1");
-                    data += "&send="+ URLEncoder.encode("SILEND","ISO-8859-1");
-                    data += "&dest="+ URLEncoder.encode(phone,"ISO-8859-1");
-                    data += "&msg=" + URLEncoder.encode("Dear Customer, Your One Time Password (OTP) to register at SimpliLend is " +str +". Do not disclose OTP to anyone. OTP will expire in 30 mins.","ISO-8859-1");
-                    HttpClient httpClient = new DefaultHttpClient();
-                    String SMSString =  "http://103.247.98.91/API/SendMsg.aspx?"+data;
-                    HttpPost httpPost = new HttpPost(SMSString);
-                    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                    HttpResponse response = httpClient.execute(httpPost);
-                    HttpEntity entity = response.getEntity();
-                    is = entity.getContent();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-                    StringBuilder sb = new StringBuilder();
-                    String line = null;
-                    while ((line = reader.readLine()) != null) {
-                        sb.append(line + "\n");
-
-                    }
-                    result = sb.toString();
-
-                } catch (ClientProtocolException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Log.e("OTP is : ","+++++++"+result);
-                return result;
-
-            }
-            @Override
-            protected void onPostExecute(String result) {
-                super.onPostExecute(result);
-
-                //Toast.makeText(getApplicationContext(), "Otp Sent Successfully to your Mobile Number",Toast.LENGTH_SHORT).show();
-
-                dialog.dismiss();
-                String No = edit_User.getText().toString();
-                SharedPreferences saveMobile = getContext().getSharedPreferences("Number", MODE_PRIVATE);
-                SharedPreferences.Editor edit = saveMobile.edit();
-                edit.putString("Mobile Number", No);
-                edit.commit();
-//                Intent intent = new Intent(GetInfo.this,OtpGenerator.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-//                if(login.isChecked()) {
-//                    intent.putExtra("login","LoginTrue");
-//                    intent.putExtra("register","RegisterFalse");
-//                    intent.putExtra("OtpGenerated",str);
-//                }
-//                else if(register.isChecked())
-//                {
-//                    intent.putExtra("register","RegisterTrue");
+//        if(moviedetails !=null) {
+//            for (Login lg : moviedetails) {
+////Login lg = new Login();
+//                String user = lg.getMailAddress();
+//                String position = lg.getPositionid();
 //
-//                    intent.putExtra("login","LoginFalse");
-//                    intent.putExtra("OtpGenerated",str);
+//                String uData = edit_User.getText().toString();
+//                String uPwd = edit_Password.getText().toString();
+//
+//                if (uData.equals(user)) {
+////                    Intent in = new Intent(getContext(),MainActivity.class);
+//                    //                in.putExtra("user",uData);
+//                    //              in.putExtra("positionid",position);
+//                    //                  startActivityForResult(in,1);
+//
+//                } else {
+//
+//                    Toast.makeText(getContext(), "Invalid user", Toast.LENGTH_SHORT).show();
 //                }
-//                startActivity(intent);
-            }
+//
+//            }
+//        }
 
-        }
-        SendingAsync sa = new SendingAsync();
-        sa.execute(phone,str);
+//        AdminAsyncTask at = new AdminAsyncTask();
+//        at.execute();
     }
 
 
-    public String RandomPassword() {
-        final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        SecureRandom rnd = new SecureRandom();
+    private void requestData(String uri,String user,String pwd) {
 
-        StringBuilder sb = new StringBuilder(4);
-        for (int i = 0; i < 4; i++)
-            sb.append(AB.charAt(rnd.nextInt(AB.length())));
 
-        return sb.toString();
+
+
+        Requestdata data = new Requestdata();
+
+        data.setMethod("POST");
+        data.setUri(uri);
+        data.setParam("userID", "John121212");
+        data.setParam("userPWD","12312121212");
+
+
+        AdminAsyncTask task = new AdminAsyncTask();
+        task.execute(data);
+
     }
+
+
+
 
 
 
@@ -326,13 +329,12 @@ public class AdminActivityFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             if (task.size() == 0) {
-
+                pb_Adddata.setVisibility(View.VISIBLE);
             }
             task.add(this);
 
 
 
-            pb_Adddata.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -353,35 +355,18 @@ public class AdminActivityFragment extends Fragment {
             if (task.size() == 0) {
                 pb_Adddata.setVisibility(View.INVISIBLE);
 
-                edit_User.clearAnimation();
-                edit_User.setText("");
-                edit_Password.setText("");
+//                edit_User.clearAnimation();
+//                edit_User.setText("");
+//                edit_Password.setText("");
             }
+            moviedetails = parseFeed(result);
+            update();
+
 
 
         }
-    }
-
-    private void requestData(String uri) {
 
 
-
-
-        Requestdata data = new Requestdata();
-
-        data.setMethod("POST");
-        data.setUri(uri);
-//        data.setParam("mobile",phone);
-//        data.setParam("OTP",str);
-
-        data.setParam("userID", "Kaaml");
-        data.setParam("userPWD","123");
-
-
-        AdminAsyncTask task = new AdminAsyncTask();
-        task.execute(data);
-
-    }
 
 
     private boolean validate() {
@@ -395,17 +380,34 @@ public class AdminActivityFragment extends Fragment {
     }
 
 
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while ((line = bufferedReader.readLine()) != null)
-            result += line;
+    public List<Login> parseFeed(String content) {
 
-        inputStream.close();
-        return result;
+        Login list;
+
+        try {
+
+            JSONArray ar = new JSONArray(content);
+            List<Login> movieList = new ArrayList<>();
+
+            for (int i = 0; i < ar.length(); i++) {
+
+
+                JSONObject obj = ar.getJSONObject(i);
+                list = new Login();
+                list.setMailAddress(obj.getString("username"));
+                list.setPositionid(obj.getString("pid"));
+                movieList.add(list);
+
+            }
+            return movieList;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+
 
     }
+}
 
 
 }

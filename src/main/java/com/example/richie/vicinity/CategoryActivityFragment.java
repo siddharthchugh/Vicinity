@@ -29,9 +29,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.richie.vicinity.Activities.ListHospitalsActivity;
 import com.example.richie.vicinity.Pojo.Category;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

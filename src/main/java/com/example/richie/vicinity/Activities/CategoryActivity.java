@@ -1,4 +1,4 @@
-package com.example.richie.vicinity;
+package com.example.richie.vicinity.Activities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+
+import com.example.richie.vicinity.R;
 
 import static java.security.AccessController.getContext;
 
